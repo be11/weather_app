@@ -1,0 +1,8 @@
+<h1><%= @pref %> 今日の天気</h1>
+
+<div class="result">
+  <%@data.each_with_index do |(k, v), i| %>
+    <p><%= k %> : <%= v %> <%= @units[i] %></p>
+   <% end %>
+</div>
+

@@ -1,0 +1,17 @@
+<div class = "center hero-unit">
+  <h1>Weather Search</h1>
+  <div class="row container">
+    <aside class="span9">
+    <section>
+    <%= form_tag(:controller => "weathers", :action => "show") do %>
+    <%= select :pref, :id, Pref.all.map{|p| [p.pref_name, p.id]}%>
+      <%= submit_tag "search", class: "btn btn-large btn-primary" %>
+    <% end %>
+      </section>
+      </aside>
+      <!--div class = "span8">
+        <h3>Weather</h3>
+      </div-->
+    </div>
+  </div>
+
