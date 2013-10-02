@@ -1,8 +1,50 @@
-<h1><%= @pref %> 今日の天気</h1>
+<h1><%= @pref %></h1>
 
-<div class="result">
-  <%@data.each_with_index do |(k, v), i| %>
-    <p><%= k %> : <%= v %> <%= @units[i] %></p>
-   <% end %>
+<p>取得時間 <%= @wdata.get_time.localtime.strftime("%H:%M") %></p>
+
+<h3>今日の天気</h3>
+<div class="weather">
+  <h4><%= image_tag(@icon)%><%= @wdata.main %></h4>
+  <table>
+    <thead>
+      <tr>
+        <%@data.each_with_index do |(k, v), i| %>
+          <th>
+            <% if v %>
+              <%= k %>
+              <% if u = @units[i] %><%= "("+u+")" %><% end %>
+            <% end %>
+          <% end%>
+    <tbody>
+      <tr>
+        <%@data.each_with_index do |(k, v), i| %>
+          <th> <% if v %> <%= v %> <% end %>
+        <% end %>
+  </table>
 </div>
 
+<h3>今後の予報</h3>
+<div class="forecast">
+  <table>
+    <thead>
+      <tr>
+        <% @params.each_with_index do |(k, v), i| %>
+          <th> <%= v %>
+            <% if u = @units_fc[i] %>
+              <%="("+u+")"%>
+            <% end %>
+        <% end %>
+    <tbody>
+      <% @fdata.each do |i| %>
+        <tr>
+          <% @params.each do |k, v| %>
+            <th>
+            <% if (p = i.send(k)).is_a?(ActiveSupport::TimeWithZone)%>
+              <%= p.strftime("%m/%d %H:%M") %>
+            <% else %>
+              <%= p %>
+            <% end %>
+          <% end %>
+      <% end %>
+  </table>
+</div>

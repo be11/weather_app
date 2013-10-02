@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pref_id: 1
+  time: 2013-10-01 20:15:52
+  temp: 1.5
+  temp_min: 1.5
+  temp_max: 1.5
+  humidity: 1.5
+  pressure: 1.5
+  main: MyString
+  description: MyString
+  icon: MyString
+  clouds: 1.5
+  windspeed: 1.5
+  winddeg: 1.5
+  rain: 1.5
+  snow: 1.5
+
+two:
+  pref_id: 1
+  time: 2013-10-01 20:15:52
+  temp: 1.5
+  temp_min: 1.5
+  temp_max: 1.5
+  humidity: 1.5
+  pressure: 1.5
+  main: MyString
+  description: MyString
+  icon: MyString
+  clouds: 1.5
+  windspeed: 1.5
+  winddeg: 1.5
+  rain: 1.5
+  snow: 1.5

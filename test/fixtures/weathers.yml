@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pref_id: 1
+  lat: 1.5
+  lon: 1.5
+  sunrize: 2013-09-30 12:02:26
+  sunset: 2013-09-30 12:02:26
+  main: MyString
+  description: MyString
+  icon: MyString
+  humidity: 1.5
+  pressure: 1.5
+  temp: 1.5
+  windspeed: 1.5
+  winddeg: 1.5
+  rain: 1.5
+  snow: 1.5
+  clouds: 1.5
+  get_time: 2013-09-30 12:02:26
+
+two:
+  pref_id: 1
+  lat: 1.5
+  lon: 1.5
+  sunrize: 2013-09-30 12:02:26
+  sunset: 2013-09-30 12:02:26
+  main: MyString
+  description: MyString
+  icon: MyString
+  humidity: 1.5
+  pressure: 1.5
+  temp: 1.5
+  windspeed: 1.5
+  winddeg: 1.5
+  rain: 1.5
+  snow: 1.5
+  clouds: 1.5
+  get_time: 2013-09-30 12:02:26

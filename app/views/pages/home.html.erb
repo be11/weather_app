@@ -4,7 +4,7 @@
     <aside class="span9">
     <section>
     <%= form_tag(:controller => "weathers", :action => "show") do %>
-    <%= select :pref, :id, Pref.all.map{|p| [p.pref_name, p.id]}%>
+    <%= select :pref, :id, Pref.all.map{|p| [p.name, p.id]}%>
       <%= submit_tag "search", class: "btn btn-large btn-primary" %>
     <% end %>
       </section>
