@@ -1,3 +1,23 @@
 // Place all the styles related to the Weathers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.weather {
+  border-collapse: collapse;
+}
+
+table.weather th {
+  font-weight: normal;
+  background-color: #F0F0F0;
+  border:1px solid #BFBFBF;
+  text-align: center;
+  padding: 0.3em;
+}
+
+table.weather tr td {
+  background-color: #FFFFFF;
+  border:1px solid #BFBFBF;
+  text-align: center;
+  padding: 0.3em;
+}
+
