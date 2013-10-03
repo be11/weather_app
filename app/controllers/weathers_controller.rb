@@ -6,10 +6,8 @@ class WeathersController < ApplicationController
   PARAMS = {lon: "coord_lon", lat: "coord_lat", description: "weather_0_description", icon: "weather_0_icon", main: "weather_0_main", rain: "rain_3h", snow: "snow_3h", temp: "main_temp", pressure: "main_pressure", humidity: "main_humidity", windspeed: "wind_speed", winddeg: "wind_deg", clouds: "clouds_all"}
   PARAMS_TIME = { sunrise: "sys_sunrise", sunset: "sys_sunset", get_time: "dt"}
   PARAMS_FC = {time: "dt__txt", description: "weather_0_description", icon: "weather_0_icon", main: "weather_0_main", rain: "rain_3h", snow: "snow_3h", temp: "main_temp", temp_min: "main_temp__min", temp_max: "main_temp__max", pressure: "main_pressure", humidity: "main_humidity", windspeed: "wind_speed", winddeg: "wind_deg", clouds: "clouds_all"}
-  PARAMS_JP = {sunrise: "日の出", sunset: "日の入", description: "天気", rain: "降水量", snow: "降雪量", temp: "気温", pressure: "気圧", humidity: "湿度", windspeed: "風速", winddeg: "風向", clouds: "雲量"}
-  PARAMS_FC_JP = {time: "時刻", description: "天気", rain: "降水量", snow: "降雪量", temp: "気温", temp_max: "最高気温", temp_min: "最低気温", pressure: "気圧", humidity: "湿度", windspeed: "風速", winddeg: "風向", clouds: "雲量"}
-  UNITS = [nil, nil, nil, "mm", "mm", "度", "hPa", "%", "m/秒", "度", "%", nil]
-  UNITS_FC = [nil, nil, "mm", "mm", "度", "度", "度", "hPa", "%", "m/秒", "度", "%"]
+  PARAMS_JP = {sunrise: "日の出", sunset: "日の入", description: "天気", rain: "降水量(mm)", snow: "降雪量(mm)", temp: "気温(度)", pressure: "気圧(hPa)", humidity: "湿度(%)", windspeed: "風速(m/秒)", winddeg: "風向(度)", clouds: "雲量(%)"}
+  PARAMS_FC_JP = {time: "時刻", description: "天気", rain: "降水量(mm)", snow: "降雪量(mm)", temp: "気温(度)", temp_max: "最高気温(度)", temp_min: "最低気温(度)", pressure: "気圧(hPa)", humidity: "湿度(%)", windspeed: "風速(m/秒)", winddeg: "風向(度)", clouds: "雲量(%)"}
   FC = "fc_"
  
   def show
@@ -27,7 +25,6 @@ class WeathersController < ApplicationController
     end
     forecast
     @pref = Pref.find_by_id(params[:pref][:id]).name
-    @units = UNITS
     @icon = ICON_URL+@wdata.icon+".png"
   end
 
@@ -66,8 +63,18 @@ class WeathersController < ApplicationController
         update_fc
       end
     end
-    @params = PARAMS_FC_JP
-    @units_fc = UNITS_FC
+    #@icon_fc = Array.new
+    #@fdata.each_with_index {|p, i| @icon_fc[i] = ICON_URL + p.icon + ".png"}
+    @params_fc = PARAMS_FC_JP
+    delete_param(:rain, :snow)
+  end
+
+  def delete_param(*args)
+    args.each do |i|
+      a = nil
+      @fdata.each {|j| a ||= j.send(i)}
+      @params_fc.delete(i) unless a
+    end
   end
 
   def get_fc
@@ -92,7 +99,5 @@ class WeathersController < ApplicationController
         @fdata.each_with_index {|p, i| p.update_attribute(k, d[2*i+1])}
       end
     end
-    #@icon_fc = Array.new
-    #@fdata.each_with_index {|p, i| @icon_fc[i] = ICON_URL + p.icon + ".png"}
   end
 end
