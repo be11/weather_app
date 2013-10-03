@@ -3,42 +3,35 @@
 <p>取得時間 <%= @wdata.get_time.localtime.strftime("%H:%M") %></p>
 
 <h3>今日の天気</h3>
-<div class="weather">
+<div>
   <h4><%= image_tag(@icon)%><%= @wdata.main %></h4>
-  <table>
+  <table border = "1" class="weather">
     <thead>
       <tr>
         <%@data.each_with_index do |(k, v), i| %>
-          <th>
-            <% if v %>
-              <%= k %>
-              <% if u = @units[i] %><%= "("+u+")" %><% end %>
-            <% end %>
-          <% end%>
+          <% if v %> <th> <%= k %> <% end %>
+        <% end%>
     <tbody>
       <tr>
         <%@data.each_with_index do |(k, v), i| %>
-          <th> <% if v %> <%= v %> <% end %>
+          <% if v %> <td><%= v %> <% end %>
         <% end %>
   </table>
 </div>
 
 <h3>今後の予報</h3>
-<div class="forecast">
-  <table>
+<div>
+  <table border = "1" class="weather">
     <thead>
       <tr>
-        <% @params.each_with_index do |(k, v), i| %>
+        <% @params_fc.each_with_index do |(k, v), i| %>
           <th> <%= v %>
-            <% if u = @units_fc[i] %>
-              <%="("+u+")"%>
-            <% end %>
         <% end %>
     <tbody>
       <% @fdata.each do |i| %>
         <tr>
-          <% @params.each do |k, v| %>
-            <th>
+          <% @params_fc.each do |k, v| %>
+            <td>
             <% if (p = i.send(k)).is_a?(ActiveSupport::TimeWithZone)%>
               <%= p.strftime("%m/%d %H:%M") %>
             <% else %>
